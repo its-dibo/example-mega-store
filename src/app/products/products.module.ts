@@ -3,16 +3,27 @@ import { CommonModule } from '@angular/common';
 import { ListComponent } from './list/list.component';
 import { DetailsComponent } from './details/details.component';
 import { EditorComponent } from './editor/editor.component';
-import { Route } from '@angular/router';
+import { Route, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatChipsModule } from '@angular/material/chips';
 
 const routes: Route[] = [
-  { path: 'products/:id', component: DetailsComponent },
-  { path: 'products', component: ListComponent },
   { path: 'editor', component: EditorComponent },
+  { path: ':id', component: DetailsComponent },
+  { path: '', component: ListComponent },
 ];
 
 @NgModule({
   declarations: [ListComponent, DetailsComponent, EditorComponent],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    HttpClientModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatChipsModule,
+  ],
 })
 export class ProductsModule {}

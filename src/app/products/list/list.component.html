@@ -1,1 +1,40 @@
-<p>list works!</p>
+<mat-spinner
+  *ngIf="!products"
+  strokeWidth="10"
+  diameter="200"
+  style="margin: auto"
+></mat-spinner>
+
+<div *ngIf="products?.length === 0">
+  No products available in this category right now!
+</div>
+
+<div class="masonry">
+  <mat-card *ngFor="let product of products">
+    <mat-card-header>
+      <mat-card-title *ngIf="product.title">
+        <a routerLink="{{ product.id }}">
+          <h3>{{ product.title }}</h3>
+        </a>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <mat-chip-list>
+          <mat-chip style="margin: auto">{{ product.category }} </mat-chip>
+        </mat-chip-list>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <img
+        *ngIf="product.image"
+        mat-card-image
+        [src]="product.image"
+        [alt]="product.title"
+        width="200px"
+      />
+
+      <!-- <div [innerHTML]="product.description"></div> -->
+      <div class="price">${{ product.price }}</div>
+    </mat-card-content>
+  </mat-card>
+</div>
