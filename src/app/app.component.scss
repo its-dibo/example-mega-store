@@ -1,0 +1,75 @@
+mat-toolbar {
+  position: fixed;
+  z-index: 100;
+
+  * {
+    // todo: if has attribute (click)
+    cursor: pointer;
+  }
+
+  .logo {
+    padding: 0 10px;
+    background-color: black;
+    border-radius: 7px;
+
+    &:hover {
+      border: solid thin brown;
+      color: red;
+    }
+
+    img:hover {
+      opacity: 0.9;
+    }
+
+    span {
+      /*make the text beside the img, but go beneath it @(max-width: 395px)*/
+      display: inline-block;
+      margin-left: 5px;
+    }
+  }
+
+  .spacer {
+    flex: 0.95;
+  }
+
+  @media (max-width: 550px) {
+    font-size: smaller;
+
+    .logo {
+      padding: 0 5px;
+    }
+
+    a {
+      margin: 5px;
+    }
+  }
+
+  @media (max-width: 304px) {
+    .logo {
+      background-color: unset;
+    }
+    .logo span {
+      display: none;
+    }
+  }
+}
+
+mat-toolbar a,
+footer a {
+  text-decoration: none;
+  color: white;
+  margin: 10px;
+}
+
+.page {
+  padding-top: 70px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  padding: 10px 10px 0px 10px;
+  width: 100%;
+  height: 40px;
+  background: grey;
+}
