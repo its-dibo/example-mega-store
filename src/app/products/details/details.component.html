@@ -1,1 +1,45 @@
-<p>details works!</p>
+<mat-spinner
+  *ngIf="loading"
+  strokeWidth="10"
+  diameter="200"
+  style="margin: auto"
+></mat-spinner>
+
+<div *ngIf="!loading && !product">the Product is not found!</div>
+
+<div style="display: block; max-width: 700px; margin: auto" *ngIf="product">
+  <mat-card>
+    <mat-card-header style="width: 500px; margin: auto">
+      <mat-card-title *ngIf="product.title">
+        <a routerLink="{{ product.id }}">
+          <h3>{{ product.title }}</h3>
+        </a>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <mat-chip-list>
+          <mat-chip style="margin: auto">{{ product.category }} </mat-chip>
+        </mat-chip-list>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <img
+        *ngIf="product.image"
+        mat-card-image
+        [src]="product.image"
+        [alt]="product.title"
+        style="max-width: 400px"
+      />
+
+      <div [innerHTML]="product.description"></div>
+    </mat-card-content>
+    <mat-card-footer>
+      <div class="price">${{ product.price }}</div>
+      <button mat-raised-button color="primary">
+        <mat-icon>credit_score</mat-icon> Buy now</button
+      ><button mat-raised-button color="">
+        <mat-icon>shopping_cart</mat-icon> Add to shopping cart
+      </button>
+    </mat-card-footer>
+  </mat-card>
+</div>

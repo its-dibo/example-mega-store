@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Route[] = [
   { path: 'editor', component: EditorComponent },
@@ -24,6 +26,8 @@ const routes: Route[] = [
     MatCardModule,
     MatProgressSpinnerModule,
     MatChipsModule,
+    MatButtonModule,
+    MatIconModule,
   ],
 })
 export class ProductsModule {}

@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 export interface Product {
   id: number;
@@ -17,9 +19,23 @@ export interface Product {
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
-  products!: Product[];
+  product!: Product;
+  loading = true;
 
-  constructor() {}
+  constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      let productId = params.get('id');
+      this.http
+        .get<Product>(`https://fakestoreapi.com/products/${productId}`)
+        .subscribe({
+          next: (payload) => {
+            this.product = payload;
+          },
+          error: (error) => console.error(error),
+          complete: () => (this.loading = false),
+        });
+    });
+  }
 }
